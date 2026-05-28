@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#05070a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>陨星突围</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <canvas id="gameCanvas" aria-label="飞机打陨石游戏画面"></canvas>
+
+      <section class="hud" aria-live="polite">
+        <div class="hud-item">
+          <span>分数</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="hud-item">
+          <span>最高</span>
+          <strong id="best">0</strong>
+        </div>
+        <div class="hud-item">
+          <span>波次</span>
+          <strong id="wave">1</strong>
+        </div>
+        <div class="hud-item weapon-meter">
+          <span>武器</span>
+          <strong id="weapon">I</strong>
+          <small id="mods">双联</small>
+        </div>
+        <div class="hud-item pickup-meter">
+          <span>拾取</span>
+          <strong id="pickup">无</strong>
+        </div>
+        <div class="hud-item life-meter" aria-label="血量">
+          <span>血量</span>
+          <div class="health-bar" aria-hidden="true">
+            <div class="health-fill" id="healthFill"></div>
+          </div>
+          <strong id="healthText">100/100</strong>
+        </div>
+        <button class="icon-button" id="pauseBtn" type="button" aria-label="暂停" title="暂停">
+          <span aria-hidden="true">Ⅱ</span>
+        </button>
+      </section>
+
+      <section class="overlay" id="startScreen">
+        <div class="title-stack">
+          <p class="eyebrow">Meteor Patrol</p>
+          <h1>陨星突围</h1>
+          <p class="subtitle">沉浸音轨 · 动态武器升级 · 触控作战</p>
+          <div class="stage-guide" aria-label="战机形态说明">
+            <p><strong>一阶段</strong><span>0-5万分</span><em>可装备1种弹药</em></p>
+            <p><strong>二阶段</strong><span>5-50万分</span><em>可装备2种弹药</em></p>
+            <p><strong>三阶段</strong><span>50万分以上</span><em>可装备3种弹药</em></p>
+          </div>
+          <button class="primary-button" id="startBtn" type="button">开始</button>
+        </div>
+      </section>
+
+      <section class="overlay is-hidden" id="pauseScreen">
+        <div class="title-stack compact">
+          <p class="eyebrow">Paused</p>
+          <h2>已暂停</h2>
+          <button class="primary-button" id="resumeBtn" type="button">继续</button>
+        </div>
+      </section>
+
+      <section class="overlay is-hidden" id="endScreen">
+        <div class="title-stack compact">
+          <p class="eyebrow">Mission Report</p>
+          <h2 id="resultTitle">任务结束</h2>
+          <p class="result-line"><span>分数</span><strong id="finalScore">0</strong></p>
+          <div class="rank-board" aria-label="历史前五分数排名">
+            <h3>历史前五</h3>
+            <ol id="scoreRank"></ol>
+          </div>
+          <button class="primary-button" id="restartBtn" type="button">再来一局</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<view class="game-shell">
+  <canvas
+    type="2d"
+    id="gameCanvas"
+    class="game-canvas"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+    bindtouchcancel="onTouchEnd"
+  ></canvas>
+
+  <view class="hud">
+    <view class="hud-item">
+      <text>分数</text>
+      <text class="hud-value">{{score}}</text>
+    </view>
+    <view class="hud-item hide-small">
+      <text>最高</text>
+      <text class="hud-value">{{best}}</text>
+    </view>
+    <view class="hud-item">
+      <text>波次</text>
+      <text class="hud-value">{{wave}}</text>
+    </view>
+    <view class="hud-item life-meter">
+      <view class="life-dot {{lives > 0 ? '' : 'is-empty'}}"></view>
+      <view class="life-dot {{lives > 1 ? '' : 'is-empty'}}"></view>
+      <view class="life-dot {{lives > 2 ? '' : 'is-empty'}}"></view>
+    </view>
+    <button class="pause-button" bindtap="togglePause">{{mode === 'paused' ? '▶' : 'Ⅱ'}}</button>
+  </view>
+
+  <view wx:if="{{mode === 'ready'}}" class="overlay" bindtap="startGame">
+    <view class="title-panel">
+      <text class="eyebrow">METEOR PATROL</text>
+      <text class="title">星翼拦截</text>
+      <button class="primary-button" bindtap="startGame">开始</button>
+    </view>
+  </view>
+
+  <view wx:if="{{mode === 'paused'}}" class="overlay">
+    <view class="title-panel compact">
+      <text class="eyebrow">PAUSED</text>
+      <text class="sub-title">已暂停</text>
+      <button class="primary-button" bindtap="resumeGame">继续</button>
+    </view>
+  </view>
+
+  <view wx:if="{{mode === 'ended'}}" class="overlay">
+    <view class="title-panel compact">
+      <text class="eyebrow">MISSION REPORT</text>
+      <text class="sub-title">{{resultTitle}}</text>
+      <view class="result-row">
+        <text>分数</text>
+        <text class="result-score">{{score}}</text>
+      </view>
+      <button class="primary-button" bindtap="startGame">再来一局</button>
+    </view>
+  </view>
+</view>

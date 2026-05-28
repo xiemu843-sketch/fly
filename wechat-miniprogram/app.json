@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/game/game"
+  ],
+  "window": {
+    "navigationBarTitleText": "星翼拦截",
+    "navigationBarBackgroundColor": "#05070a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#05070a"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
